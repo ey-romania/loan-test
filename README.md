@@ -1,30 +1,6 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A mockup backend written in [Nest](https://github.com/nestjs/nest) framework that will be used for technical interviews.
 
 ## Installation
 
@@ -58,16 +34,30 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Challenge
+For any candidate that was invited for the technical interview the challenge is:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+You will have to create a frontend application that communicates with this fake backend. You can choose to implement the login done with Jwt token(just use the login route and you will get the token needed), or skip this one and use the non secure web api.
+Mockups will be found on the UI Mockup section. The mockups are mandatory to be implemented in desktop and mobile version. If you go on the secure path, you will have to implement the login screen as well and all the pages must not be available for non logged in users. 
 
-## Stay in touch
+All the fields in the mockup are mandatory and their type and shape can be found via the swagger definition of the api. There is no server-side validation so the validation must be done on client-side. 
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Information
+For getting access for the api definitions via swagger please go the following address:
+http://localhost:3000/api/
 
-## License
+There are two ways of communicating with the api:
+1. Via user login using the following credentials: email: test@abc.abc password:testTalentQ. And there you will use a jwt token that will last for an hour. If you need to increase the the lifetime of the jwt token go to: src/auth/auth.module.ts and replace the signOptions:{expiresIn:'your value in seconds'}
+2. If you decide to go on the route without taking user login into account than the loanpublic schema will be used.
 
-Nest is [MIT licensed](LICENSE).
+This backend is a in memory list of loan applications and each restart will cause to remove all the previous entries. Also there are not any validations done on server side, so any validation strategy you will have, will be implement only on frontend part. However if you want to implement validations on server side, you can do it on the app.service.ts and will propagated on all the controllers.
+
+For getting the loan types value that are going to populate the dropdown please use the route: api/public/loan/types which is available without any credentials.
+
+## UI Mockup
+Mockup for figma will be found
+1. [Mobile](https://www.figma.com/proto/vNbvxh6FlXgZBdMzsMSRHO/Lo-fi-Wireframe-Kit-(Community)?node-id=19%3A2226&scaling=min-zoom&page-id=12%3A16)
+2. [Desktop](https://www.figma.com/proto/vNbvxh6FlXgZBdMzsMSRHO/Lo-fi-Wireframe-Kit-(Community)?node-id=1%3A5648&scaling=min-zoom&page-id=1%3A5647)
+
+## Special mentions
+At the time of writing this documentation the nodejs version that will work without any problem is: v14.16.1. 

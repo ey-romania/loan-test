@@ -3,31 +3,23 @@ import {
   Controller,
   Delete,
   Get,
-  Post,
   Param,
+  Post,
   UseGuards,
-  Request,
 } from '@nestjs/common';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AppService } from './app.service';
-import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Loan } from './entities/loan.entities';
-import { LoanDto } from './dto/loan.dto';
-import { LocalAuthGuard } from './auth/local-auth.guard';
-import { User } from './users/users.service';
-import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { LoanDto } from './dto/loan.dto';
+import { LoanType } from './entities/loanType';
 
-@ApiBearerAuth()
-@ApiTags('loan')
+@ApiTags('loanpublic')
 @Controller()
-export class AppController {
-  constructor(
-    private readonly appService: AppService,
-    private authService: AuthService,
-  ) {}
+export class AppnonsecController {
+  constructor(private readonly appService: AppService) {}
 
-  @UseGuards(JwtAuthGuard)
-  @Get('loan/list')
+  @Get('public/loan/list')
   @ApiResponse({
     status: 200,
     description: 'Get all loans',
@@ -37,8 +29,7 @@ export class AppController {
     return this.appService.getLoans();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Post('loan')
+  @Post('public/loan')
   @ApiResponse({
     status: 200,
     description: 'Add loan application',
@@ -47,8 +38,7 @@ export class AppController {
     return this.appService.addLoan(loan);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Delete('loan/:id')
+  @Delete('public/loan/:id')
   @ApiResponse({
     status: 200,
     description: 'Remove a loan application',
@@ -56,14 +46,26 @@ export class AppController {
   removeLoan(@Param('id') id: string) {
     this.appService.removeLoan(id);
   }
-
-  @UseGuards(LocalAuthGuard)
-  @Post('auth/login')
+  @Get('public/loan/types')
   @ApiResponse({
     status: 200,
-    description: 'Login user',
+    description: 'Loan Types',
+    type: [LoanType],
   })
-  async login(@Body() req: User) {
-    return this.authService.login(req);
+  getLoanTypes() {
+    return [
+      {
+        id: 1,
+        name: 'Car Loan',
+      },
+      {
+        id: 2,
+        name: 'Personal Loan',
+      },
+      {
+        id: 3,
+        name: 'Real estate Loan',
+      },
+    ];
   }
 }

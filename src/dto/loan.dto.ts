@@ -34,5 +34,5 @@ export class LoanDto {
   grossSalary: number;
 
   @ApiProperty()
-  loanType: boolean;
+  loanType: number;
 }

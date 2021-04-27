@@ -37,5 +37,5 @@ export class Loan {
   grossSalary: number;
 
   @ApiProperty()
-  loanType: boolean;
+  loanType: number;
 }
