@@ -41,7 +41,6 @@ You will have to create a frontend application(an independent application in any
 
 All the fields in the mockup are mandatory and their type and shape can be found via the swagger definition of the API. There is no server-side validation, so the validation must be done on the client-side.
 
-IMPORTANT:
 If the challenge is pretty simple you may add additional improvements: UX, backend, hosting etc.
 
 ## Information
