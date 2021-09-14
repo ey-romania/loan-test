@@ -35,8 +35,6 @@ $ npm run test:cov
 ```
 
 ## Challenge
-For any candidate that was invited for the technical interview, the challenge is:
-
 You will have to create a frontend application(an independent application in any library/framework you like to work) that communicates with this fake backend. You can choose to implement the login done with the Jwt token(use the login route and get the token needed), or skip this one and use the non-secure web API. Mockups will be found in the UI Mockup section. The mockups are mandatory to be implemented in desktop and mobile versions. If you go on the secure path, you will have to implement the login screen as well, and all the pages must not be available for non-logged-in users.
 
 All the fields in the mockup are mandatory and their type and shape can be found via the swagger definition of the API. There is no server-side validation, so the validation must be done on the client-side.
